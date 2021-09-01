@@ -9,6 +9,7 @@ namespace Artsy.Data
     public class ArtistsRepository
     {
         private readonly IDbConnection _db;
+        // NOTE
         // SOLI(D) PRINCIPLE 
         //                       vvv DI (dependency injection)
         public ArtistsRepository(IDbConnection db)
@@ -34,14 +35,14 @@ namespace Artsy.Data
             artistData.Id = id;
             return artistData;
             
-            // FIXME this is terrible don't do it
+            // FIXME this is TERRIBLE don't do it
             // never use string interpolation or concationation 
             // to build your sql statements
             
-            // var sql = $@"INSERT INTO artists(name, birthYear, deathYear)
-            //     VALUES({artistData.Name}, {artistData.BirthYear}, {artistData.DeathYear});
-            //     SELECT LAST_ROW();";
-            // return _db.ExecuteScalar<Artist>(sql);
+            var sql = $@"INSERT INTO artists(name, birthYear, deathYear)
+                VALUES({artistData.Name}, {artistData.BirthYear}, {artistData.DeathYear});
+                SELECT LAST_ROW();";
+            return _db.ExecuteScalar<Artist>(sql);
 
         }
     }

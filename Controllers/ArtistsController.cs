@@ -30,7 +30,7 @@ namespace Artsy.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Artist> Get(string id)
+        public ActionResult<Artist> Get(int id)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Artsy.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult<Artist> Edit([FromBody] Artist updatedArtist, string id)
+        public ActionResult<Artist> Edit([FromBody] Artist updatedArtist, int id)
         {
             try
             {
